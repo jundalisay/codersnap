@@ -1,0 +1,6 @@
+%h1 Users Index
+- @users.each do |user|
+	.card
+		%a{:href => "/users/#{user.id}"} #{user.username} 
+		= link_to "Add Friend", users_path, method: :post, class: "btn btn-success" #(friend_id: user)
+		= link_to "Send a Message", new_message_path, method: :post, class: "btn btn-success"

@@ -1,0 +1,5 @@
+messages/index
+	not logged in > sessions/new, layout false
+		logged in > messages/index, layout true, Messages.all
+		not logged in > flash error 
+	logged in > Messages.all, layout true

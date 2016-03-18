@@ -1,0 +1,34 @@
+%nav.navbar.navbar-light.bg-faded
+  %button.navbar-toggler.hidden-sm-up{"data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
+    ☰
+  #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+    %ul.nav.navbar-nav
+      %li.nav-item.active
+        %a.nav-link{:href => "/"} Home
+      / %li.nav-item
+      /   %a.nav-link{:href => "/messages"} Messages
+      %li.nav-item
+        %a.nav-link{:href => "/"} Friends
+      %li.nav-item
+        %a.nav-link{:href => "/users"} Users
+      %li.nav-item
+        %a.nav-link{:href => "http://learning.coderschool.vn/"} About
+      %li.nav-item
+        - if current_user
+          Welcome #{current_user.username}
+          %li.nav-item
+            = link_to "Logout", logout_path #, nethod: 'delete'
+        - else
+          = link_to "Login", login_path #, nethod: 'delete'
+          %li.nav-item
+            = link_to "Register", new_user_path
+
+
+- flash.each do |name, msg|
+  %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+    .container
+      = msg
+
+/ - flash.each do |key, value|
+/   = content_tag(:div, class: "alert alert-#{key}") do
+/     = value
