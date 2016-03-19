@@ -2,7 +2,7 @@ require 'carrierwave/orm/activerecord'
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessor :new_password, :new_password_confirmation, :password, :avatar
+  attr_accessor :password, :avatar
 	has_secure_password
 
   #AVATAR
@@ -51,7 +51,6 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
-
-    
   end
+
 end

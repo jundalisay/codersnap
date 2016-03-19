@@ -17,7 +17,7 @@ private
   helper_method :current_user #gives the method to the view
 
   def require_login
-    unless signed_in?
+    unless !current_user.nil?
       respond_to do |format|
         format.html do
           flash[:error] = "You must be logged in to access this content."

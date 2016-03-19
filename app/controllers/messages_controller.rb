@@ -3,9 +3,9 @@ class MessagesController < ApplicationController
   before_action :correct_users?, only: [:show, :destroy]
 
   def index
-    populate_messages
-    prep_new_message
-    @users = User.all
+    populate_messages #gathers received, sent messages of the user
+    prep_new_message #creates Message.new
+    # @users = User.all
   end
 
   def received
