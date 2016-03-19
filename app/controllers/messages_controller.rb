@@ -44,7 +44,7 @@ class MessagesController < ApplicationController
       if params[:page]
         render params.delete(:page)
       else
-        redirect_to :back
+        redirect_to messages_path #:back
       end
     end
   end
@@ -89,8 +89,8 @@ private
   end
 
   def populate_messages
-    # @received_messages = current_user.received_messages.includes(:sender).where(removed_by_recipient: false).paginate(page: params[:received_messages_page])
-    @sent_messages = current_user.sent_messages.includes(:recipient).where(removed_by_sender: false).paginate(page: params[:sent_messages_page])
+    #@received_messages = current_user.received_messages.includes(:sender).where(removed_by_recipient: false).paginate(page: params[:received_messages_page])
+    #@sent_messages = current_user.sent_messages.includes(:recipient).where(removed_by_sender: false).paginate(page: params[:sent_messages_page])
     @active_tab = session.delete(:active_tab) ||  params.delete(:active_tab) || "received"
   end
 
@@ -154,10 +154,4 @@ private
     users.any? { |user| current_user? user }
   end
 
-  def validate_users(*users)
-    unless valid_users?(*users)
-      flash[:error] = "Unauthorized to access that content."
-      redirect_to root_path
-    end
-  end
 end

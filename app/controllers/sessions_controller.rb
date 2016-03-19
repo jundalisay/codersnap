@@ -4,23 +4,10 @@ class SessionsController < ApplicationController
 
   def new
     # redirect_to root_path if signed_in?
-    # @session_form = SessionForm.new
     render :layout => false 
   end
 
   def create
-    # @session_form = SessionForm.new(session_params)
-    # if !@session_form.valid?
-    #   render 'new'
-    #   flash.now[:error] = 'Invalid login credentials'
-    # elsif User.authenticate(@session_form.email, @session_form.password).try(:confirmed)
-    #   user = User.find_by_email(@session_form.email)
-    #   sign_in user
-    #   redirect_to root_path
-    # else
-    #   flash.now[:error] = 'Invalid login credentials'
-    #   render 'new'
-    # end
 
   	if @user = User.find_by(email: params[:email]) and @user.authenticate(params[:password])
   		session[:user_id] = @user.id #sets session
@@ -40,7 +27,7 @@ class SessionsController < ApplicationController
 ######################
   private
 		def user_params
-			params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
+			params.require(:user).permit(:username, :email, :password, :avatar) #, :password_confirmation
 		end
 
     def sign_in(user)

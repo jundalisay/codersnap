@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :correct_users?, only: [:edit, :update, :destroy]
+  before_action :correct_users?, only: [:edit, :update, :destroy]
 
 	def index
 		@users = User.all
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
+			params.require(:user).permit(:username, :email, :password, :avatar) #, :password_confirmation
 		end
 
 end

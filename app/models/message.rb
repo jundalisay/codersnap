@@ -4,6 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :sender, class_name: "User", foreign_key: :sender_id
   belongs_to :recipient, class_name: "User", foreign_key: :recipient_id
   has_many :sent_messages, foreign_key: "sender_id", class_name: "Message"
+  has_many :received_messages, foreign_key: "recipient_id", class_name: "Message"
 
   validates(:recipient_identifier, presence: true, :if => "recipient_id.nil?")
   validates(:subject, presence: true, length: 1..30)
@@ -23,7 +24,6 @@ class Message < ActiveRecord::Base
 	# def received_messages
 	# 	Message
 	# end
-
 
   def remove_user(user)
     self.removed_by_sender = true if user == sender

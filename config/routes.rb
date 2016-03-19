@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root 'messages#index'
   resources :messages
+  get 'messages/received' => 'messages#received'
+  get 'messages/sent' => 'messages#sent'
+  # post '/' => 'messages#create'
+  # resources :messages
 
   resources :users
 
@@ -13,10 +17,7 @@ Rails.application.routes.draw do
 
   delete 'logout' => 'sessions#destroy'
 
-  get 'messages/received' => 'messages#received'
-  get 'messages/sent' => 'messages#sent'
-  post '/' => 'messages#create'
-  resources :messages
+
 
   resources :friendships
 end
