@@ -14,7 +14,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'haml-rails'
-gem 'kaminari'
+
 gem 'simple_form'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
@@ -25,6 +25,9 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+# gem 'kaminari'
 
 group :development do
   gem 'spring'

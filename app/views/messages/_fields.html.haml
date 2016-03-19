@@ -1,0 +1,12 @@
+/ = f.input :recipient_identifier, label: "Recipient", input_html: { autofocus: @message.recipient_identifier.blank? }
+
+%b Recipient
+%select#recipient_identifier{:name => "message[recipient_identifier]"}
+	- @users.each do |user|
+		%option{:value => user.id} #{user.username}
+
+= f.input :subject
+
+= f.input :message, as: :text
+
+= f.submit "Send Message", class: "btn btn-primary btn-block"

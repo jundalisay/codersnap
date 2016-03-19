@@ -1,19 +1,36 @@
-%h1 Listing friendships
+.row
+  %h1.col-sm-8.col-md-9 Friends
+  = render 'layouts/search', url: friendships_path
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+%ul#friendship_tabs.nav.nav-tabs
+  = content_tag :li, class: (@active_tab == "mutual" ? "active" : "") do
+    %a{href: "#mutual", data: {toggle: "tab"}} Mutual
+  = content_tag :li, class: (@active_tab == "requests" ? "active" : "") do
+    %a{href: "#requests", data: {toggle: "tab"}} Requests
+  = content_tag :li, class: (@active_tab == "pending" ? "active" : "") do
+    %a{href: "#pending", data: {toggle: "tab"}} Pending
 
-  %tbody
-    - @friendships.each do |friendship|
-      %tr
-        %td= link_to 'Show', friendship
-        %td= link_to 'Edit', edit_friendship_path(friendship)
-        %td= link_to 'Destroy', friendship, :method => :delete, :data => { :confirm => 'Are you sure?' }
+.tab-content
+  = content_tag :div, id: 'mutual', class: "tab-pane#{' active' if @active_tab == 'mutual'}" do
+    %br
+    - if @mutual.blank?
+      %h2 No network
+    - else
+      .mutual.searchable
+        = render 'friendships', mutual: @mutual
 
-%br
+  = content_tag :div, id: 'requests', class: "tab-pane#{' active' if @active_tab == 'requests'}" do
+    %br
+    - if @requests.blank?
+      %h2 No one is awaiting approval from you
+    - else
+      .requests.searchable
+        = render 'requests', requests: @requests
 
-= link_to 'New Friendship', new_friendship_path
+  = content_tag :div, id: 'pending', class: "tab-pane#{' active' if @active_tab == 'pending'}" do
+    %br
+    - if @pending.blank?
+      %h2 You are not awaiting approval from anyone
+    - else
+      .pending.searchable
+        = render 'pendings', pending: @pending

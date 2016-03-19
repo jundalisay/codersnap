@@ -1,0 +1,3 @@
+= render partial: 'pending', collection: pending, as: :friend
+.pull-right
+  = will_paginate pending, param_name: :pending_page, params: {active_tab: "pending"}

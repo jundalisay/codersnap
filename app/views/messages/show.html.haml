@@ -1,0 +1,6 @@
+%h3 Message
+= @message.subject
+
+.card
+  %p= simple_format @message.message 
+//, sanitize: true

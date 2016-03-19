@@ -1,0 +1,6 @@
+.container
+  = form_for @search_form, url: url, method: :get, class: "form col-sm-4 col-md-3", role: "form", remote: true do |f|
+    .input-group
+      = f.text_field :search_for, class: "form-control", autofocus: true
+      %span.input-group-addon.glyphicon.glyphicon-search
+

@@ -1,4 +1,4 @@
-messages/index
+messages/index (application controller require login)
 	not logged in > sessions/new, layout false
 		logged in > messages/index, layout true, Messages.all
 		not logged in > flash error 

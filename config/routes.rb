@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'messages/received' => 'messages#received'
   get 'messages/sent' => 'messages#sent'
+  post '/' => 'messages#create'
   resources :messages
 
   resources :friendships

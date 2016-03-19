@@ -1,7 +1,65 @@
 .container.row
-	%h3 SnapChat! Messages Home
-	%form.form-inline.pull-xs-right	
-		= form_tag :controller => 'messages', :action => 'index', :method => 'get' do
-			%p
-				= text_field_tag :search, params[:search]
-				%button.btn.btn-success-outline{:type => "submit"} Search
+  %h3 SnapChat! Messages Home
+  %form.form-inline.pull-xs-right	
+    
+  / = form_tag :controller => 'messages', :action => 'index', :method => 'get' do
+  /   = text_field_tag :search, params[:search]
+  /     %button.btn.btn-success-outline{:type => "submit"} Search
+
+%ul#message_tabs.nav.nav-tabs
+  = content_tag :li, class: (@active_tab == "received" ? "active" : "") do
+    %a{href: "#received_tab", data: {toggle: "tab"}} Received
+  = content_tag :li, class: (@active_tab == 'sent' ? "active" : "") do
+    %a{href: "#sent_tab", data: {toggle: 'tab'}} Sent
+  = content_tag :li, class: (@active_tab == 'new' ? "active" : "") do
+    %a{href: "#new_tab", data: {toggle: 'tab'}} New
+
+
+.tab-content
+  = content_tag :div, id: "received_tab", class: "tab-pane#{' active' if @active_tab == 'received'}" do
+    %br
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Date
+          %th Sender
+          %th Subject
+          %th Read
+          %th
+      %tbody
+        - if @received_messages.blank?
+          %tr
+            %td No messages found.
+        - else
+          = render partial: 'received_message', collection: @received_messages, as: :message
+    / .pull-right
+    /   = will_paginate @received_messages, param_name: :received_messages_page, params: {active_tab: 'received'}
+    .clearfix
+
+  = content_tag :div, id: "sent_tab", class: "tab-pane#{' active' if @active_tab == 'sent'}" do
+    %br
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Date
+          %th Recipient
+          %th Subject
+          %th Read
+          %th
+      %tbody
+        - if @sent_messages.blank?
+          %tr
+            %td No messages found.
+        - else
+          = render partial: 'sent_message', collection: @sent_messages, as: :message
+    / .pull-right
+    /   = will_paginate @sent_messages, param_name: :sent_messages_page, params: {active_tab: 'sent'}
+    .clearfix
+
+  = content_tag :div, id: "new_tab", class: "tab-pane#{' active' if @active_tab == 'new'}" do
+    %br
+    .col-sm-8.col-sm-offset-2
+      = simple_form_for @message, html: { role: "form" } do |f|
+        %input{name: "page", type: "hidden", value: "index"}
+        = render 'fields', f: f
+    .clearfix

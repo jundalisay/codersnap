@@ -1,0 +1,4 @@
+= render partial: 'request', collection: requests, as: :user
+.pull-right
+  = will_paginate requests, param_name: :requests_page, params: {active_tab: "requests"}
+

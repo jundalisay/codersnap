@@ -1,0 +1,7 @@
+%tr
+  %td= link_to friend.username, friend
+  %td
+    .pull-right
+      = link_to new_message_path(recipient: friend.username), class: "btn btn-sm btn-primary" do
+        %span.glyphicon.glyphicon-envelope
+        Message

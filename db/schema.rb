@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20160318110253) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "message"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "read_at"
+    t.boolean  "removed_by_sender",    default: false
+    t.boolean  "removed_by_recipient", default: false
+    t.boolean  "read",                 default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"

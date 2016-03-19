@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create, :show, :index, :destroy]
+
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_users?, only: [:edit, :update, :destroy]
 
 	def index
 		@users = User.all
@@ -18,8 +22,8 @@ class UsersController < ApplicationController
 			flash[:success] = 'Registered!'
 			redirect_to root_path
 		else
-			flash.now[:error] = "Invalid info!"
 			render 'new'
+			flash.now[:error] = "Invalid info!"
 		end
 	end
 

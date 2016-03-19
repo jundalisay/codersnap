@@ -1,0 +1,6 @@
+- if friends.empty?
+  You don't have any companies in your network
+- else
+  %table#home_friends.table
+    - friends.each do |friend|
+      = render 'friendships/friend', friend: friend

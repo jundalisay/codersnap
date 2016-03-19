@@ -3,13 +3,11 @@ require 'bcrypt'
 module SessionsHelper
 
   def sign_in(user)
-    cookies.permanent[:remember_token] = user.remember_token
     self.current_user = user
   end
 
   def sign_out
     self.current_user = nil
-    cookies.delete(:remember_token)
   end
 
   def signed_in?
@@ -27,9 +25,9 @@ module SessionsHelper
     @current_user = user
   end
 
-  # def current_user
-  #   @current_user ||= User.find_by_remember_token(cookies[:remember_token])
-  # end
+  def current_user
+    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+  end
 
   def current_user?(user)
     user == current_user
@@ -44,9 +42,9 @@ module SessionsHelper
     session[:return_to] = request.url
   end
 
-  # def valid_users?(*users)
-  #   current_user.admin || users.any? { |user| current_user? user }
-  # end
+  def valid_users?(*users)
+    current_user.admin || users.any? { |user| current_user? user }
+  end
 
   def validate_users(*users)
     unless valid_users?(*users)
