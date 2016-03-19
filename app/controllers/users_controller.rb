@@ -36,7 +36,13 @@ class UsersController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:username, :email, :password, :avatar) #, :password_confirmation
+			params.require(:user).permit(:username, :email, :password, :avatar, :new_password, :new_password_confirmation) #, :password_confirmation
 		end
 
+		  def hash_new_password
+    unhashed_password = new_password || password
+     unless unhashed_password.blank?
+       self.hashed_password = BCrypt::Password.create(unhashed_password)
+     end
+  end
 end

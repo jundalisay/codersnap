@@ -2,9 +2,9 @@ require 'carrierwave/orm/activerecord'
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessor :password, :avatar
-	has_secure_password
-
+  has_secure_password
+  attr_accessor :new_password, :new_password_confirmation, :password, :avatar 
+	
   #AVATAR
   mount_uploader :avatar, AvatarUploader
   has_many :avatars
@@ -12,10 +12,8 @@ class User < ActiveRecord::Base
 
   #EMAIL VALIDATIONS
   validates(:username, presence: true)
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates(:email,
-            presence: true,
-            format: { with: VALID_EMAIL_REGEX })
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates(:email, presence: true) #format: { with: VALID_EMAIL_REGEX })
   validates_uniqueness_of :email, case_sensitive: false
 
   #FRIENDSHIPS

@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :require_login
   before_action :set_message, only: [:show, :destroy]
   before_action :correct_users?, only: [:show, :destroy]
 

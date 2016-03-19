@@ -2,7 +2,7 @@
 %html{lang: "en"}
 	%head
 		%title
-			Snap2
+			CoderSnap
 
 	%body
 		.container
@@ -13,7 +13,8 @@
 				= simple_form_for @user do |f|
 					= f.input :username, class: "form-control"
 					= f.input :email, class: "form-control"
-					= f.input :password, class: "form-control"
+					= f.input :new_password, as: :password, label: "Password"
+					= f.input :new_password_confirmation, as: :password, label: "Confirm Password"
 					= f.file_field :avatar
 					= f.submit
 
@@ -37,3 +38,4 @@
 	background-size: cover;
 	}
 
+/= f.input :password, class: "form-control"

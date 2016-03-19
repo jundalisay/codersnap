@@ -16,7 +16,7 @@ March 18 - added authentication, sessions, forms, messages, pictures (6 hours)
 
 Learned from: https://www.youtube.com/watch?v=zQJtlvlNunw, https://www.youtube.com/watch?v=o0eVqNbapb0, and https://www.youtube.com/watch?v=Hw6WtWJwRtU
 
-March 19 - added friendships (4 hours)
+March 19 - added friendships and fixed login (8 hours)
 
 URL: **http://codersnap.herokuapp.com/**
 
@@ -38,16 +38,16 @@ User can only read messages where they are the recipient.
 
 ## Bonus User Stories
 
-* [X] User can attach an image: https://github.com/carrierwaveuploader/carrierwave.
+* [?] User can attach an image: https://github.com/carrierwaveuploader/carrierwave.
 or https://www.filepicker.com/. I haven't tried, but on Heroku it should be easy to use Filepicker add-on.
-* [X] User can specify multiple recipients per message.
-* [X] User can log in with Facebook. If interested, you can check out https://oauth.io instead.
-* [X] Implement Infinite Scroll. You can use the kaminari gem and jquery-infinite-pages gem.
-* [X] User gets an email when they receive a message, with a link to view the message.
-* [X] Check out letter_opener to test emails on localhost.
-* [X] Check out Email/SMS addons on Heroku if you want to implement it on Heroku. Sendgrid is a good free option.
-* [X] Check out sucker_punch gem if you want a simple way to send email via a background task. For serious apps, you should use sidekiq gem instead.
-* [X] User gets an email when a message they have sent is read with the time at which the message was read.
+* [ ] User can specify multiple recipients per message.
+* [ ] User can log in with Facebook. If interested, you can check out https://oauth.io instead.
+* [ ] Implement Infinite Scroll. You can use the kaminari gem and jquery-infinite-pages gem.
+* [ ] User gets an email when they receive a message, with a link to view the message.
+* [ ] Check out letter_opener to test emails on localhost.
+* [ ] Check out Email/SMS addons on Heroku if you want to implement it on Heroku. Sendgrid is a good free option.
+* [ ] Check out sucker_punch gem if you want a simple way to send email via a background task. For serious apps, you should use sidekiq gem instead.
+* [ ] User gets an email when a message they have sent is read with the time at which the message was read.
 * [X] User can send a message to the email address of a non-registered user. The recipient will receive an email with a link to sign up for the service, and after creating an account, will be able to view the sent message.
 * [X] User A can "block" User B. If User A blocks User B, they will not see messages from User B. User B will not know they have been blocked.
 Designing the schema for this may be tricky. Ask questions and share your schema if you get stuck.
