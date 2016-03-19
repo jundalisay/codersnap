@@ -33,7 +33,7 @@ The following **required** functionality is complete:
 * [?] Clicking the "add friends" link takes the user to a page with all users listed, with a link to "add user to friends list".
 * [?] Clicking on "new message" takes the user to a page where they can write a new mesasge. The recipient field should be a dropdown, where the options are names from the user's friends.
 * [ ] Clicking on "sent messages" takes the user to a page listing messages they have sent. Each message should display at what time it was read by the recipient, or "unread". The user cannot read the contents of the messages.
-* [ ] User can read a message's content only once. Once the message has been read, the user will see a page indicating the message has already been read.
+* [X] User can read a message's content only once. Once the message has been read, the user will see a page indicating the message has already been read.
 User can only read messages where they are the recipient.
 
 ## Bonus User Stories
