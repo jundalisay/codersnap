@@ -1,9 +1,10 @@
 Received
 
 = content_tag :tr, id: "message_#{message.id}" do
+  %td= message.id
   %td= message.sender.nil? ? "Deleted" : (link_to message.sender.username, message.sender)
   %td= link_to message.subject, message
   %td= link_to (message.read ? "Read" : "Unread"), message
-  %td= link_to '&times;'.html_safe, message_path(message.id), method: :delete, type: 'button', class: 'close', remote: true
-/ %td= format_time message.created_at
+  %td= message.created_at.strftime("%m/%d/%Y %I:%M %p")
+  %td= link_to '&times'.html_safe, message_path(message.id), method: :delete, type: 'button', class: 'close', remote: true, data: {confirm: "Are you sure?"}
   

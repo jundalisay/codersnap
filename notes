@@ -5,3 +5,6 @@ messages/index (application controller require login)
 			register > users/new
 				register ok > log in > messages/index
 	logged in > messages/index, layout true, Messages.all
+
+
+password to Citi2 wifi: movefast93

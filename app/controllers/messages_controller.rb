@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
   def index
     populate_messages #gathers received, sent messages of the user
     prep_new_message #creates Message.new
-    # @users = User.all
   end
 
   def received
@@ -51,9 +50,12 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    session[:active_tab] = @message.recipient == current_user ? 'received' : 'sent'
-    @message_id = @message.id
-    @message.remove_user(current_user)
+    # session[:active_tab] = @message.recipient == current_user ? 'received' : 'sent'
+    # @message = Message.find_by_id(message.id) #DOESN'T WORK
+    # @message = Message.find(params[:id]) #DOESN'T WORK
+    @message.id = message.id #DOESN'T WORK
+    @message.destroy #DOESN'T WORK
+    # @message.remove_user(current_user) #DOESN'T WORK
     respond_to do |format|
       format.html do
         flash[:success] = "Message deleted."

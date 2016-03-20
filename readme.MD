@@ -6,7 +6,7 @@
 
 Submitted by: **Juan Dalisay Jr.**
 
-Time spent: **12** hours 
+Time spent: **17** hours 
 
 Timeline:
 
@@ -16,7 +16,9 @@ March 18 - added authentication, sessions, forms, messages, pictures (6 hours)
 
 Learned from: https://www.youtube.com/watch?v=zQJtlvlNunw, https://www.youtube.com/watch?v=o0eVqNbapb0, and https://www.youtube.com/watch?v=Hw6WtWJwRtU
 
-March 19 - added friendships and fixed login (8 hours)
+March 19 - added friendships and fixed login (6 hours)
+
+March 20 - fixed Registration and Friends controller with help from Harley and Hoa (2 hours) and fixed some bugs (1 hour)
 
 URL: **http://codersnap.herokuapp.com/**
 
@@ -30,7 +32,7 @@ The following **required** functionality is complete:
 * [X] User can login using an email and password.
 * [X] After logging in, the user is taken to a page that has a list of incoming messages, sorted in descending chronological order (newest messages at top), a "new message" link, an "add friends" link, and a "sent messages" link.
 * [X] Unread messages should be bold or something similar in the list of messages.
-* [?] Clicking the "add friends" link takes the user to a page with all users listed, with a link to "add user to friends list".
+* [X] Clicking the "add friends" link takes the user to a page with all users listed, with a link to "add user to friends list".
 * [?] Clicking on "new message" takes the user to a page where they can write a new mesasge. The recipient field should be a dropdown, where the options are names from the user's friends.
 * [ ] Clicking on "sent messages" takes the user to a page listing messages they have sent. Each message should display at what time it was read by the recipient, or "unread". The user cannot read the contents of the messages.
 * [X] User can read a message's content only once. Once the message has been read, the user will see a page indicating the message has already been read.
@@ -57,7 +59,7 @@ Designing the schema for this may be tricky. Ask questions and share your schema
 
 The following known issues:
 
-* [ ] 
+* [ ] I didn't know how to start with the proper Message, Friendship model so I took an existing messaging 
 
 ## Video Walkthrough 
 

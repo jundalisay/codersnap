@@ -1,4 +1,7 @@
-= f.association :recipient, label_method: :email, value_method: :id
+= f.association :recipient, label_method: :username, value_method: :id
+
+/ = f.association :recipient, label_method: :email, value_method: :id
+
 /= f.select :recipient_id, User.collect{|e| [e.email, e.id]}, {}, class: 'form-control'
 
 / = debug options_for_select(User.all.map({|e| [e.email, e.id]})
