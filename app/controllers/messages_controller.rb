@@ -4,8 +4,12 @@ class MessagesController < ApplicationController
   before_action :correct_users?, only: [:show, :destroy]
 
   def index
-    populate_messages #gathers received, sent messages of the user
-    prep_new_message #creates Message.new
+    if current_user.exist?
+      populate_messages #gathers received, sent messages of the user
+      prep_new_message #creates Message.new
+    else
+      render login_path
+    end
   end
 
   def received
