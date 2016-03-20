@@ -1,6 +1,6 @@
 .row
   %h1.col-sm-8.col-md-9 Friends
-  = render 'layouts/search', url: friendships_path
+  / = render 'layouts/search', url: friendships_path
 
 %ul#friendship_tabs.nav.nav-tabs
   = content_tag :li, class: (@active_tab == "mutual" ? "active" : "") do
@@ -17,7 +17,8 @@
       %h2 No network
     - else
       .mutual.searchable
-        = render 'friendships', mutual: @mutual
+        - @mutual.each do |friend|
+          = render 'friendships', friend: friend
 
   = content_tag :div, id: 'requests', class: "tab-pane#{' active' if @active_tab == 'requests'}" do
     %br

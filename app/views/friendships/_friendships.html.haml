@@ -1,0 +1,38 @@
+.panel.panel-default
+  .panel-heading
+    = link_to friend do
+      = content_tag :h3, friend.username, class: "panel-title"
+  .panel-body
+    .container
+      .row
+        = render 'users/user_sm', friend: friend
+      .row
+        .btn-group.pull-right
+          = link_to "Message", new_message_path(recipient: friend.username), class: "btn btn-primary"
+          = link_to "Unfriend", friendship_path(friend), method: :delete, class: 'btn btn-danger'
+
+/ #myModal.modal.fade{ role: 'dialog', aria: {hidden: true}}
+/   .modal-dialog
+/     .modal-content
+/       .modal-header
+/         %button.close{data: {dismiss: "modal"}, aria: {hidden: true}} &times;
+/         = content_tag :h4, "Disconnect from #{friend.username}", class: 'modal-title'
+/       .modal-body
+/         = content_tag :p, "Are you sure you would like to remove #{friend.username} from your network?"
+/       .modal-footer
+/         = link_to "Unlink", friendship_path(friend), method: :delete, class: "btn btn-primary"
+/         %button.btn.btn-default{data: {dismiss: "modal"}} Cancel
+
+
+/ #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+/   .modal-dialog{:role => "document"}
+/     .modal-content
+/       .modal-header
+/         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+/           %span{"aria-hidden" => "true"} &times;
+/         %h4#myModalLabel.modal-title Modal title
+/       .modal-body
+/         \...
+/       .modal-footer
+/         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+/         %button.btn.btn-primary{:type => "button"} Save changes

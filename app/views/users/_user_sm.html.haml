@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-sm-10
+      %h1 #{friend.username}
+    .col-sm-2
+      .pull-right
+        / = image_tag(@user.avatar_url, :size => "200", :class => "img-responsive")
+        / = image_tag @user.avatar_url(:square300), class: "img-responsive"
+
+:javascript
+  $(document).ready(function(){
+    (function vendorTableSorter(){ 
+      /* paste all the vendor code here */
+    }());
+  });// end document.ready

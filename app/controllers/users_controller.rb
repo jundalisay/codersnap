@@ -14,18 +14,19 @@ class UsersController < ApplicationController
 	end	
 
 	def create
-		# @user = User.create user_params
-		@user = User.new(user_params)
+		@user = User.create user_params
+		# @user = User.new(user_params)
 
-		# if @user.persisted?
-		if @user.save
+		if @user.persisted?
+
+		# if @user.save
 			# UserMailer.user_confirmation_email(@user).deliver
 			session[:user_id] = @user.id
 			flash[:success] = 'Registered!'
 			redirect_to login_path
 		else
+			flash.now[:error] = "#{@user.errors.full_messages.to_sentence}"
 			render 'new'
-			flash.now[:error] = "Invalid info!"
 		end
 	end
 
@@ -36,10 +37,10 @@ class UsersController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:username, :email, :password, :avatar, :new_password, :new_password_confirmation) #, :password_confirmation
+			params.require(:user).permit(:recipient_id, :username, :email, :password, :password_confirmation, :avatar) #, :password_confirmation, :new_password, :new_password_confirmation, :password_confirmation
 		end
 
-		  def hash_new_password
+def hash_new_password
     unhashed_password = new_password || password
      unless unhashed_password.blank?
        self.hashed_password = BCrypt::Password.create(unhashed_password)

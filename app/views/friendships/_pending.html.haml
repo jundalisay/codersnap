@@ -5,7 +5,7 @@
   .panel-body
     .container
       .row
-        = render 'layouts/user_sm', user: friend
+        = render 'users/user_sm', friend: friend
       .row
         .btn-group.pull-right
           = link_to "Message", new_message_path(recipient: friend.username), class: "btn btn-primary"

@@ -3,16 +3,15 @@ class FriendshipsController < ApplicationController
   before_action :friend_requests #set_friendship, only: [:show, :edit, :update, :destroy]
 
   def create
-    @friendship = if params.has_key? :friend_id
-      current_user.friendships.build(friend_id: params.delete(:friend_id))
-    else
-      current_user.friendships.build(friend_id: params.delete(:user_id))
-    end
+    @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+    # else
+    #   current_user.friendships.build(friend_id: params.delete(:user_id))
+    # end
     @valid = @friendship.save
     respond_to do |format|
       format.html do
         if @valid
-          flash[:success] = "Friended #{@friendship.friend.username}."
+          flash[:success] = "Friended."#{@friendship.friend.username} 
         else
           flash[:error] = "Unable to add friend."
         end
@@ -61,32 +60,32 @@ class FriendshipsController < ApplicationController
 
   def index
     # @search_form = params.has_key?(:search_form) ? SearchForm.new(search_params) : SearchForm.new
-    @active_tab = params.delete(:active_tab) || session.delete(:active_tab) # || 'mutual'
-    # @mutual = current_user.mutual_friends
-    @requests = current_user.friend_requests
-    @pending = current_user.pending_friends
-    unless @search_form.search_for.blank?
+    @active_tab = params.delete(:active_tab) || session.delete(:active_tab) || 'mutual'
+    @mutual = mutual_friends
+    @requests = friend_requests
+    @pending = pending_friends
+    #unless @search_form.search_for.blank?
       # @mutual = @mutual.where(
       #   "lower(username) LIKE lower(?)",
       #   "#{Regexp.escape(@search_form.search_for)}%"
       # )
-      @requests = @requests.where(
-        "lower(username) LIKE lower(?)",
-        "#{Regexp.escape(@search_form.search_for)}%"
-      )
-      @pending = @pending.where(
-        "lower(username) LIKE lower(?)",
-        "#{Regexp.escape(@search_form.search_for)}%"
-      )
-    end
+      # @requests = @requests.where(
+      #   "lower(username) LIKE lower(?)",
+      #   "#{Regexp.escape(@search_form.search_for)}%"
+      # )
+      # @pending = @pending.where(
+      #   "lower(username) LIKE lower(?)",
+      #   "#{Regexp.escape(@search_form.search_for)}%"
+      # )
+    # end
     respond_to do |format|
       format.html do
-        # @mutual = @mutual.paginate(page: params[:mutual_page])
+        @mutual = @mutual.paginate(page: params[:mutual_page])
         @requests = @requests.paginate(page: params[:requests_page])
         @pending = @pending.paginate(page: params[:pending_page])
       end
       format.js do
-        # @mutual = @mutual.paginate(page: nil)
+        @mutual = @mutual.paginate(page: nil)
         @requests = @requests.paginate(page: nil)
         @pending = @pending.paginate(page: nil)
         render 'friends'
@@ -140,12 +139,12 @@ class FriendshipsController < ApplicationController
       end
     end
 
-    def current_user=(user)
-      @current_user = user
-    end
+    # def current_user=(user)
+    #   @current_user = user
+    # end
 
     # def current_user
-    #   @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+    #   @current_user ||= User.find_by_id(params[:id])
     # end
 
     def current_user?(user)
@@ -174,10 +173,10 @@ class FriendshipsController < ApplicationController
 
 # ######## FRIENDSHIPS DEFINITIONS
 
-    # def friends
-    #   session[:active_tab] = 'mutual'
-    #   redirect_to friendships_path
-    # end
+    def friends
+      session[:active_tab] = 'mutual'
+      redirect_to friendships_path
+    end
 
   def friend_request?(friendship)
     inverse = Friendship.where(friend: friendship.user, user: friendship.friend)
@@ -198,24 +197,24 @@ class FriendshipsController < ApplicationController
       redirect_to friendships_path
     end
 
-    # def mutual_friends
-    #   friends.where(id: inverse_friends.map { |inverse| inverse.id })
-    # end
+    def mutual_friends
+      current_user.friends.where(id: current_user.inverse_friends.map { |inverse| inverse.id })
+    end
 
-    # def mutual_friendships
-    #   friendships.where(friend_id: inverse_friendships.map { |inverse| inverse.user_id })
-    # end
+    def mutual_friendships
+      current_user.friendships.where(friend_id: current_user.inverse_friendships.map { |inverse| inverse.user_id })
+    end
 
     def pending_friends
-      friends.where.not(id: inverse_friends.map { |inverse| inverse.id})
+      current_user.friends.where.not(id: current_user.inverse_friends.map { |inverse| inverse.id})
     end
 
     def friend_requests
-      inverse_friends.where.not(id: friends.map { |friend| friend.id})
+      current_user.inverse_friends.where.not(id: current_user.friends.map { |friend| friend.id})
     end
 
     def friend_request_count
-      request_total = inverse_friends.count #- mutual_friends.count
+      request_total = current_user.inverse_friends.count #- mutual_friends.count
     end
 
 end

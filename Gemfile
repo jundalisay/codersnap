@@ -29,7 +29,11 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 # gem 'kaminari'
 
+gem 'sidekiq'
+gem 'jquery-infinite-pages'
+
 group :development do
+	gem 'byebug'
   gem 'spring'
 end
 

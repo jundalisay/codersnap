@@ -1,9 +1,9 @@
-require 'carrierwave/orm/activerecord'
-require 'bcrypt'
+# require 'carrierwave/orm/activerecord'
+# require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessor :new_password, :new_password_confirmation, :password, :avatar 
+ #attr_accessor :new_password, :new_password_confirmation, :password, :avatar 
 	
   #AVATAR
   mount_uploader :avatar, AvatarUploader

@@ -1,7 +1,9 @@
 .container.row
   %h3 SnapChat! Messages Home
   %form.form-inline.pull-xs-right	
-    
+
+  / = render 'layouts/search'
+
   / = form_tag :controller => 'messages', :action => 'index', :method => 'get' do
   /   = text_field_tag :search, params[:search]
   /     %button.btn.btn-success-outline{:type => "submit"} Search
