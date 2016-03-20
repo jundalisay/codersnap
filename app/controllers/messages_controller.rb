@@ -24,7 +24,8 @@ class MessagesController < ApplicationController
 
   def new
     session[:active_tab] = 'new'
-    redirect_to messages_path(recipient: params[:recipient], recipient: params[:subject])
+    redirect_to messages_path(params[:recipient], recipient: params[:subject])
+    # redirect_to messages_path(recipient: params[:recipient], recipient: params[:subject])
   end
 
   def create

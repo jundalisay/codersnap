@@ -12,9 +12,10 @@ module Snap2
     config.active_support.escape_html_entities_in_json = true
 
     config.assets.enabled = true
-
     config.assets.version = '1.0'
 
+    config.serve_static_files = true
+    
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
