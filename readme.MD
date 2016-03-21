@@ -40,7 +40,7 @@ User can only read messages where they are the recipient.
 
 ## Bonus User Stories
 
-* [?] User can attach an image: https://github.com/carrierwaveuploader/carrierwave.
+* [ ] User can attach an image: https://github.com/carrierwaveuploader/carrierwave.
 or https://www.filepicker.com/. I haven't tried, but on Heroku it should be easy to use Filepicker add-on.
 * [ ] User can specify multiple recipients per message.
 * [ ] User can log in with Facebook. If interested, you can check out https://oauth.io instead.
@@ -50,16 +50,17 @@ or https://www.filepicker.com/. I haven't tried, but on Heroku it should be easy
 * [ ] Check out Email/SMS addons on Heroku if you want to implement it on Heroku. Sendgrid is a good free option.
 * [ ] Check out sucker_punch gem if you want a simple way to send email via a background task. For serious apps, you should use sidekiq gem instead.
 * [ ] User gets an email when a message they have sent is read with the time at which the message was read.
-* [X] User can send a message to the email address of a non-registered user. The recipient will receive an email with a link to sign up for the service, and after creating an account, will be able to view the sent message.
-* [X] User A can "block" User B. If User A blocks User B, they will not see messages from User B. User B will not know they have been blocked.
+* [ ] User can send a message to the email address of a non-registered user. The recipient will receive an email with a link to sign up for the service, and after creating an account, will be able to view the sent message.
+* [ ] User A can "block" User B. If User A blocks User B, they will not see messages from User B. User B will not know they have been blocked.
 Designing the schema for this may be tricky. Ask questions and share your schema if you get stuck.
-* [X] User can remove friends from their friends list.
-* [X]User can unblock friends from their block list.
+* [ ] User can remove friends from their friends list.
+* [ ]User can unblock friends from their block list.
 
 
 The following known issues:
 
 * I didn't know how to start with the proper Message, Friendship model so I took an existing messaging project and transferred the code 
+* Cloudinary doesn't seem to work
 
 ## Video Walkthrough 
 
@@ -74,7 +75,7 @@ GIF created with SilentCast[SilentCast](https://github.com/colinkeenan/silentcas
 
 Describe any challenges encountered while building the app.
 
-1. 
+1. There was no instruction on how to properly build the Messages and Friendship models. The best reference for Friendship model was Railscast #163 'self-referential association'. Without a proper guide, I couldn't build the models so I just took from an existing project and tried to make it work 
 
 
 ## License
