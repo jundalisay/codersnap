@@ -13,8 +13,10 @@
     %a{href: "#received_tab", data: {toggle: "tab"}} Received
   = content_tag :li, class: (@active_tab == 'sent' ? "active" : "") do
     %a{href: "#sent_tab", data: {toggle: 'tab'}} Sent
-  = content_tag :li, class: (@active_tab == 'new' ? "active" : "") do
-    %a{href: "#new_tab", data: {toggle: 'tab'}} New
+  %li
+    = link_to "New", new_message_path
+  / = content_tag :li, class: (@active_tab == 'new' ? "active" : "") do
+  /   %a{href: "#new_tab", data: {toggle: 'tab'}} New
 
 
 .tab-content
