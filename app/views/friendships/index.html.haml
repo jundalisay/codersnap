@@ -4,11 +4,11 @@
 
 %ul#friendship_tabs.nav.nav-tabs
   = content_tag :li, class: (@active_tab == "mutual" ? "active" : "") do
-    %a{href: "#mutual", data: {toggle: "tab"}} Mutual
+    %a{href: "#mutual", data: {toggle: "tab"}} Current Friends
   = content_tag :li, class: (@active_tab == "requests" ? "active" : "") do
-    %a{href: "#requests", data: {toggle: "tab"}} Requests
+    %a{href: "#requests", data: {toggle: "tab"}} These Want To Be Your Friend
   = content_tag :li, class: (@active_tab == "pending" ? "active" : "") do
-    %a{href: "#pending", data: {toggle: "tab"}} Pending
+    %a{href: "#pending", data: {toggle: "tab"}} You Sent Friend Requests To These
 
 .tab-content
   = content_tag :div, id: 'mutual', class: "tab-pane#{' active' if @active_tab == 'mutual'}" do

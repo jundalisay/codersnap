@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :correct_users?, only: [:edit, :update, :destroy]
 
 	def index
-		@users = User.all
+		# @users = User.all
+		# User.all :conditions => (current_user ? ["id != ?", current_user.id] : [])
+		@users = User.where("id != ?", current_user.id)
 	end
 
 	def new
