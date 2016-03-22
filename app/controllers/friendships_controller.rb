@@ -4,9 +4,6 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id])
-    # else
-    #   current_user.friendships.build(friend_id: params.delete(:user_id))
-    # end
     @valid = @friendship.save
     respond_to do |format|
       format.html do
@@ -21,9 +18,7 @@ class FriendshipsController < ApplicationController
         if current_user.mutual_friends.include? @friendship.friend
           @new_friend = @friendship.friend
           inverse_friendship = current_user.inverse_friendships.where(user: @friendship.friend).first
-          # @new_activity = current_user.activities.where(trackable_id: @friendship).first
-          # @activity = current_user.activities.where(trackable_id: inverse_friendship).first
-       end
+        end
       end
     end
   end
@@ -31,9 +26,6 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = current_user.friendships.find_by_friend_id(params[:id])
     @inverse_friendship = current_user.inverse_friendships.find_by_user_id(params[:id])
-    # activity = current_user.activities.where(trackable: @inverse_friendship).first unless @inverse_friendship.nil?
-    # @activity_id = activity.id if activity
-    # activity.try(:destroy)
     friend = User.find(params[:id])
     message = "Unfriended #{ friend.username }."
 
