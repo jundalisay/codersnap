@@ -46,11 +46,12 @@
     %table.table.table-hover
       %thead
         %tr
-          %th Date
+          %th ID
           %th Recipient
           %th Subject
-          %th Read
-          %th
+          %th{width: '5%'} Read?
+          %th{width: '20%'} Date Sent
+          %th{width: '5%'} Delete?
       %tbody
         - if @sent_messages.blank?
           %tr
